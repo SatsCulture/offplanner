@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <title>Offplanner – Urlaubsplaner mit Brückentagen</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Offplanner</h1>
+            <p id="subtitle">Urlaubsplaner mit Brückentagen</p>
+        </header>
+        <section class="controls">
+            <form id="controlForm">
+                <label for="yearSelect">Jahr:</label>
+                <input type="number" id="yearSelect" min="2000" max="2100" />
+                <label for="stateSelect">Bundesland:</label>
+                <select id="stateSelect"></select>
+                <label for="vacationDaysInput">Verfügbare&nbsp;Urlaubstage:</label>
+                <input type="number" id="vacationDaysInput" min="0" max="365" step="1" value="20" />
+                <button type="submit">Anzeigen</button>
+                <!-- Zusätzliche Aktionen: Export, Dark Mode, Erinnerungen -->
+                <button type="button" id="exportButton">Exportieren (.ics)</button>
+                <button type="button" id="darkModeToggle">Dark&nbsp;Mode</button>
+                <button type="button" id="reminderButton">Erinnerungen</button>
+            </form>
+        </section>
+
+        <!-- Tabelle für die empfohlenen Brückentage -->
+        <section class="table-section">
+            <h2>Empfohlene Brückentage</h2>
+            <table id="suggestionTable">
+                <thead>
+                    <tr>
+                        <th>Feiertag</th>
+                        <th>Datum</th>
+                        <th>Wochentag</th>
+                        <th>Typ</th>
+                        <th>Urlaubstage</th>
+                        <th>Freie Tage</th>
+                        <th>Zu nehmende Tage</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p id="noSuggestions" style="display: none;">Für die gewählte Kombination wurden keine passenden Vorschläge gefunden.</p>
+            <!-- Zusammenfassung der insgesamt verwendeten Urlaubstage -->
+            <p id="vacationSummary" style="margin-top: 0.5rem; font-weight: 500;"></p>
+        </section>
+
+        <!-- Kalenderansicht -->
+        <section class="calendar-section">
+            <h2>Kalenderansicht</h2>
+            <div id="calendarContainer" class="calendar"></div>
+            <div class="legend">
+                <span class="legend-item holiday">Feiertag</span>
+                <span class="legend-item weekend">Wochenende</span>
+                <span class="legend-item vacation">Urlaubstag</span>
+                <span class="legend-item break-day">Freier Tag</span>
+            </div>
+        </section>
+
+        <!-- Reiseziele basierend auf den gewählten Urlauben -->
+        <section class="destinations-section">
+            <h2>Reiseziele</h2>
+            <ul id="destinationsList"></ul>
+            <p class="dest-citation">Die Vorschläge basieren auf einem Beitrag zu europäischen Reisezielen in 2025【40811128156826†L304-L344】【40811128156826†L415-L439】【40811128156826†L520-L559】.</p>
+        </section>
+
+        <footer>
+            <p class="citation">Quellen: Die Zuordnung der regionalen Feiertage zu den Bundesländern basiert auf öffentlich verfügbaren Listen, beispielsweise dem deutschsprachigen Feiertagskalender【819254595201035†L120-L178】.</p>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
