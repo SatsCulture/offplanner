@@ -134,70 +134,6 @@ table#suggestionTable tr.month-header td {
     line-height: 1.2;
 }
 
-/* Dark Mode Styles */
-body.dark {
-    background-color: #1d252c;
-    color: #e0e7ef;
-}
-body.dark .container {
-    background-color: #24303a;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
-}
-body.dark header h1 {
-    color: #7cc6e8;
-}
-body.dark header p {
-    color: #a5b7c7;
-}
-body.dark .controls label,
-body.dark .controls input,
-body.dark .controls select {
-    color: #e0e7ef;
-    background-color: #2e3a45;
-    border-color: #3d4c5a;
-}
-body.dark .controls button {
-    background-color: #0e639c;
-    color: #ffffff;
-}
-body.dark .controls button:hover {
-    background-color: #094b74;
-}
-body.dark table thead {
-    background-color: #2e3d4a;
-    color: #e0e7ef;
-}
-body.dark tbody tr:nth-child(even) {
-    background-color: #2a3a49;
-}
-body.dark tbody tr:hover {
-    background-color: #33495b;
-}
-body.dark .month {
-    background-color: #2e3d4a;
-    border-color: #3c4c5b;
-}
-body.dark .month h3 {
-    background-color: #2e3d4a;
-    color: #7cc6e8;
-}
-body.dark .month td.weekend {
-    background-color: #2b3845;
-}
-body.dark .month td.holiday {
-    background-color: #4c3b31;
-}
-body.dark .month td.vacation {
-    background-color: #1b3c5b;
-}
-body.dark .month td.break-day {
-    background-color: #274d46;
-}
-body.dark .legend .holiday { background-color: #4c3b31; }
-body.dark .legend .weekend { background-color: #2b3845; }
-body.dark .legend .vacation { background-color: #1b3c5b; }
-body.dark .legend .break-day { background-color: #274d46; }
-
 /* Nachricht bei fehlenden Vorschlägen */
 #noSuggestions {
     margin-top: 1rem;
@@ -350,4 +286,168 @@ footer {
     left: 0;
     color: #006493;
     font-weight: bold;
+}
+#
+# Neues Formulardesign – Grid-Layout und Elemente
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+@media (max-width: 900px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.form-actions button,
+.form-group input,
+.form-group select {
+  height: 40px;
+  font-size: 1rem;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #ccd7e0;
+  background-color: #fff;
+}
+
+button.primary {
+  background-color: #006493;
+  color: white;
+  font-weight: 600;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+button.primary:hover {
+  background-color: #004f70;
+}
+
+/* Apple-Like Modernes Redesign */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background: #f9f9fb;
+}
+
+.container {
+  background: #ffffff;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  margin-top: 3rem;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #007aff;
+}
+
+header p {
+  font-size: 1.1rem;
+  color: #5f6c7b;
+}
+
+/* Formular-Grid: Eingabefelder + Button nebeneinander */
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: #2c3e50;
+}
+
+.form-group input,
+.form-group select {
+  height: 44px;
+  border: 1px solid #d0d7de;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 1rem;
+  background-color: #ffffff;
+  transition: border 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: #007aff;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+button {
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+button.primary {
+  background-color: #007aff;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 122, 255, 0.3);
+}
+
+button.primary:hover {
+  background-color: #006ae6;
+}
+
+button.secondary {
+  background-color: #f1f3f5;
+  color: #2c3e50;
+  border: 1px solid #d0d7de;
+}
+
+button.secondary:hover {
+  background-color: #e2e6ea;
 }
