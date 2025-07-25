@@ -726,6 +726,33 @@ function updateTable() {
     const suggestions = computeBridgingSuggestions(year, state);
     // Optimale Auswahl basierend auf verfügbaren Urlaubstagen ermitteln
     const selectedPlan = computeRecommendedPlan(suggestions, availableDays);
+
+    // Kombi-Vorschläge aus benachbarten Zeiträumen
+    function findCombinedSuggestions(plan) {
+        const kombis = [];
+        for (let i = 0; i < plan.length - 1; i++) {
+            const a = plan[i];
+            const b = plan[i + 1];
+            const endA = new Date(a.breakEnd);
+            const startB = new Date(b.breakStart);
+            const diffDays = (startB - endA) / (1000 * 60 * 60 * 24);
+            if (diffDays >= -1 && diffDays <= 1) {
+                kombis.push({
+                    combined: true,
+                    holidays: [a.holiday, b.holiday],
+                    breakStart: new Date(a.breakStart),
+                    breakEnd: new Date(b.breakEnd),
+                    vacationDays: a.vacationDays + b.vacationDays,
+                    totalDays: Math.round((b.breakEnd - a.breakStart) / (1000 * 60 * 60 * 24)) + 1,
+                    bridgingDays: [...a.bridgingDays, ...b.bridgingDays],
+                    original: [a, b]
+                });
+            }
+        }
+        return kombis;
+    }
+
+    const combinedSuggestions = findCombinedSuggestions(selectedPlan);
     // Tabelle leeren und neu füllen
     tableBody.innerHTML = '';
     // Sortiere die ausgewählten Vorschläge chronologisch nach Datum
@@ -773,6 +800,25 @@ function updateTable() {
             summaryEl.textContent = '';
         } else {
             summaryEl.textContent = `Insgesamt verwendete Urlaubstage: ${totalUsed}` + (available ? ` von ${available}` : '');
+        }
+    }
+
+    // Kombi-Vorschläge Tabelle anzeigen
+    const comboTable = document.getElementById('comboSuggestions');
+    if (comboTable) {
+        comboTable.innerHTML = '';
+        if (combinedSuggestions.length > 0) {
+            combinedSuggestions.forEach((c) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${c.holidays.join(' + ')}</td>
+                    <td>${formatDate(c.breakStart)}</td>
+                    <td>${formatDate(c.breakEnd)}</td>
+                    <td>${c.vacationDays}</td>
+                    <td>${c.totalDays}</td>
+                `;
+                comboTable.appendChild(row);
+            });
         }
     }
     // Aktualisiere Untertitel
