@@ -13,19 +13,23 @@
             <p id="subtitle">Urlaubsplaner mit Brückentagen</p>
         </header>
         <section class="controls">
-            <form id="controlForm">
-                <label for="yearSelect">Jahr:</label>
-                <input type="number" id="yearSelect" min="2000" max="2100" />
-                <label for="stateSelect">Bundesland:</label>
-                <select id="stateSelect"></select>
-                <label for="vacationDaysInput">Verfügbare&nbsp;Urlaubstage:</label>
-                <input type="number" id="vacationDaysInput" min="0" max="365" step="1" value="20" />
-                <button type="submit">Anzeigen</button>
-                <!-- Zusätzliche Aktionen: Export, Dark Mode, Erinnerungen -->
-                <button type="button" id="exportButton">Exportieren (.ics)</button>
-                <button type="button" id="darkModeToggle">Dark&nbsp;Mode</button>
-                <button type="button" id="reminderButton">Erinnerungen</button>
-            </form>
+          <form id="controlForm" class="form-grid">
+            <div class="form-group">
+              <label for="yearSelect">Jahr:</label>
+              <input type="number" id="yearSelect" min="2000" max="2100" />
+            </div>
+            <div class="form-group">
+              <label for="stateSelect">Bundesland:</label>
+              <select id="stateSelect"></select>
+            </div>
+            <div class="form-group">
+              <label for="vacationDaysInput">Verfügbare Urlaubstage:</label>
+              <input type="number" id="vacationDaysInput" min="0" max="365" step="1" value="20" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="primary">Anzeigen</button>
+            </div>
+          </form>
         </section>
 
         <!-- Tabelle für die empfohlenen Brückentage -->
@@ -48,6 +52,23 @@
             <p id="noSuggestions" style="display: none;">Für die gewählte Kombination wurden keine passenden Vorschläge gefunden.</p>
             <!-- Zusammenfassung der insgesamt verwendeten Urlaubstage -->
             <p id="vacationSummary" style="margin-top: 0.5rem; font-weight: 500;"></p>
+        </section>
+
+        <!-- Kombinierte Vorschläge -->
+        <section class="table-section">
+            <h2>Kombi-Vorschläge</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feiertage</th>
+                        <th>Start</th>
+                        <th>Ende</th>
+                        <th>Urlaubstage</th>
+                        <th>Freie Tage</th>
+                    </tr>
+                </thead>
+                <tbody id="comboSuggestions"></tbody>
+            </table>
         </section>
 
         <!-- Kalenderansicht -->
